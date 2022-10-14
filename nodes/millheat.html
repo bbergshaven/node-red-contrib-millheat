@@ -1,0 +1,127 @@
+<script type="text/javascript">
+    RED.nodes.registerType('millheat',{
+        category: 'Mill',
+        color: '#F9F6E6',
+        defaults: {
+            apiRef: {value:"", type:"millheat-api"},
+            name: {value:""},
+            millQuery: {
+                    value:'millQuery',
+                    label: 'millQuery',
+                    validate: RED.validators.typedInput("millQuerytype", false)},
+            millQuerytype: {value:"msg"},
+            homeId: {
+                    value:'homeId',
+                    label: 'homeId',
+                    validate: RED.validators.typedInput("homeIdtype", false)},
+            homeIdtype: {value:"msg"},
+            roomId: {
+                    value:'roomId',
+                    label:'roomId',
+                    validate: RED.validators.typedInput("roomIdtype", false)},
+            roomIdtype: {value:"msg"},
+            deviceId: {
+                    value:'deviceId',
+                    label:'deviceId',
+                    validate: RED.validators.typedInput("deviceIdtype", false)},
+            deviceIdtype: {value:"msg"},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "mill_logo.svg",
+        label: function() {
+            return this.name||"millheat";
+        },
+        oneditprepare: function() {
+
+            if (!this.millQuery) {
+                this.millQuery = 'query';
+                $("#node-input-millQuery").val("query");
+            }
+            if (!this.millQuerytype) {
+                this.millQuerytype = 'msg';
+            }
+            if (!this.homeId) {
+                this.homeId = 'homeId';
+                $("#node-input-homeId").val("homeId");
+            }
+            if (!this.homeIdtype) {
+                this.homeIdtype = 'msg';
+            }
+            if (!this.roomId) {
+                this.roomId = 'roomId';
+                $("#node-input-roomId").val("roomId");
+            }
+            if (!this.roomIdtype) {
+                this.roomIdtype = 'msg';
+            }
+            if (!this.deviceId) {
+                this.deviceId = 'deviceId';
+                $("#node-input-deviceId").val("deviceId");
+            }
+            if (!this.deviceIdtype) {
+                this.deviceIdtype = 'msg';
+            }
+            var optionSelectDevice2020 = {value:"selectDevice2020",label:"selectDevice2020(deviceId)",hasValue:false};
+            var optionGetIndependentDevices2020 = {value:"getIndependentDevices2020",label:"getIndependentDevices2020(homeId)",hasValue:false};
+            var optionSelectDeviceByRoom2020 = {value:"selectDeviceByRoom2020",label:"selectDeviceByRoom2020(roomId)",hasValue:false};
+            var optionSelectHomeList = {value:"selectHomeList",label:"selectHomeList()",hasValue:false};
+            var optionSelectRoomByHome2020 = {value:"selectRoomByHome2020",label:"selectRoomByHome2020(homeId)",hasValue:false};
+            $("#node-input-millQuery").typedInput({
+                default: 'msg',
+                typeField: $("#node-input-millQuerytype"),
+                types:['msg',optionSelectDevice2020,optionGetIndependentDevices2020,optionSelectDeviceByRoom2020,optionSelectHomeList,optionSelectRoomByHome2020]
+            });
+            $("#node-input-homeId").typedInput({
+                default: 'msg',
+                typeField: $("#node-input-homeIdtype"),
+                types:['msg','flow','global','str','env']
+            });
+            $("#node-input-roomId").typedInput({
+                default: 'msg',
+                typeField: $("#node-input-roomIdtype"),
+                types:['msg','flow','global','str','env']
+            });
+            $("#node-input-deviceId").typedInput({
+                default: 'msg',
+                typeField: $("#node-input-deviceIdtype"),
+                types:['msg','flow','global','str','env']
+            });
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="millheat">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-apiRef" class="l-width"><i class="fa fa-key"></i> Credentials</label>
+        <input type="text" id="node-input-apiRef">
+    </div>
+    <div class="form-row">
+        <label for="node-input-millQuery"><i class="fa fa-cogs"></i>Query</label>
+        <input type="hidden" id="node-input-millQuerytype">
+        <input style="width:70%" type="text" id="node-input-millQuery" placeholder="millQuery">
+    </div>
+    <div class="form-row">
+        <label for="node-input-homeId">HomeId</label>
+        <input type="hidden" id="node-input-homeIdtype">
+        <input style="width:70%" type="text" id="node-input-homeId" placeholder="homeId">
+    </div>
+    <div class="form-row">
+        <label for="node-input-roomId">RoomId</label>
+        <input type="hidden" id="node-input-roomIdtype">
+        <input style="width:70%" type="text" id="node-input-roomId" placeholder="roomId">
+    </div>
+    <div class="form-row">
+        <label for="node-input-deviceId">DeviceId</label>
+        <input type="hidden" id="node-input-deviceIdtype">
+        <input style="width:70%" type="text" id="node-input-deviceId" placeholder="deviceId">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="millheat">
+    <p>A simple node that converts the message payloads into all millheat characters</p>
+</script>

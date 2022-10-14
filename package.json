@@ -1,0 +1,42 @@
+{
+    "name": "node-red-contrib-millheat",
+    "version": "0.0.1",
+    "description": "A Node-Red node to interact with the Mill Open API",
+    "repository": "git://github.com/bbergshaven/node-red-contrib-millheat.git",
+    "directories": {
+        "nodes": "./nodes",
+        "examples": "./examples"
+    },
+    "scripts": {},
+    "author": {
+        "name": "Bernt-Johan Bergshaven",
+        "email": "bernt@clarify.io"
+    },
+    "license": "MIT",
+    "keywords": [
+        "Mill",
+        "Millheat",
+        "iiot",
+        "node-red"
+    ],
+    "volta": {
+        "node": "16.15.0",
+        "npm": "8.11.0"
+    },
+    "node-red": {
+        "version": ">=3.0.0",
+        "nodes": {
+            "millheat": "nodes/millheat.js",
+            "millheat-api": "nodes/millheat_api.js"
+        }
+    },
+    "dependencies": {
+        "millheat-js": "^0.0.2"
+    },
+    "devDependencies": {
+        "node-red": "^3"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
+}
