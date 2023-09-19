@@ -18,29 +18,36 @@ module.exports = function (RED) {
         done(errorMessage);
         return;
       }
-      switch (msg.query) {
-        case 'selectDevice2020':
-          msg.payload = await this.api.selectDevice2020(msg.deviceId);
-          break;
-        case 'getIndependentDevices2020':
-          msg.payload = await this.api.getIndependentDevices2020(msg.homeId);
-          break;
-        case 'selectDeviceByRoom2020':
-          msg.payload = await this.api.selectDeviceByRoom2020(msg.roomId);
-          break;
-        case 'selectHomeList':
-          msg.payload = await this.api.selectHomeList();
-          break;
-        case 'selectRoomByHome2020':
-          msg.payload = await this.api.selectRoomByHome2020(msg.homeId);
-          break;
-        default:
-          let errorMessage = 'Unknown query in msg';
-          this.status({fill: 'red', shape: 'ring', text: errorMessage});
-          done(errorMessage);
-          return;
+      try{
+        switch (msg.query) {
+          case 'selectDevice2020':
+            msg.payload = await this.api.selectDevice2020(msg.deviceId);
+            break;
+          case 'getIndependentDevices2020':
+              msg.payload = await this.api.getIndependentDevices2020(msg.homeId);
+            break;
+          case 'selectDeviceByRoom2020':
+            msg.payload = await this.api.selectDeviceByRoom2020(msg.roomId);
+            break;
+          case 'selectHomeList':
+            msg.payload = await this.api.selectHomeList();
+            break;
+          case 'selectRoomByHome2020':
+            msg.payload = await this.api.selectRoomByHome2020(msg.homeId);
+            break;
+          default:
+            let errorMessage = 'Unknown query in msg';
+            this.status({fill: 'red', shape: 'ring', text: errorMessage});
+            done(errorMessage);
+            return;
+        }
+      }catch(error){
+        let errorMessage = `${error}`;
+        this.status({fill: 'red', shape: 'ring', text: errorMessage});
+        done(errorMessage);
+        return;
       }
-
+      this.status({});
       send(msg);
       done();
     });
