@@ -11,26 +11,18 @@ module.exports = async function (RED) {
     }
   }
 
-  MillAPINode.prototype.selectDevice2020 = async function (deviceId) {
-    return this.client.selectDevice2020(deviceId);
+  MillAPINode.prototype.getHouses = async function () {
+    console.log(this.client)
+    return this.client.getHouses();
   };
-  MillAPINode.prototype.getIndependentDevices2020 = async function (homeId) {
-    return this.client.getIndependentDevices2020(homeId);
+  MillAPINode.prototype.getDevicesForHouse = async function (houseId) {
+    return this.client.getDevicesForHouse(houseId);
   };
-  MillAPINode.prototype.selectDeviceByRoom2020 = async function (roomId) {
-    return this.client.selectDeviceByRoom2020(roomId);
+  MillAPINode.prototype.getIndependentDevicesForHouse = async function (houseId) {
+    return this.client.getIndependentDevicesForHouse(houseId);
   };
-  MillAPINode.prototype.selectHomeList = async function () {
-    return this.client.selectHomeList();
-  };
-  MillAPINode.prototype.selectRoomByHome2020 = async function (homeId) {
-    return this.client.selectRoomByHome2020(homeId);
-  };
-
   RED.nodes.registerType('millheat-api', MillAPINode, {
     credentials: {
-      access_key: {type: 'text'},
-      secret_token: {type: 'password'},
       username: {type: 'text'},
       password: {type: 'password'},
     },

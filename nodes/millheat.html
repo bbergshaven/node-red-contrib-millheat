@@ -10,11 +10,11 @@
                     label: 'millQuery',
                     validate: RED.validators.typedInput("millQuerytype", false)},
             millQuerytype: {value:"msg"},
-            homeId: {
-                    value:'homeId',
-                    label: 'homeId',
-                    validate: RED.validators.typedInput("homeIdtype", false)},
-            homeIdtype: {value:"msg"},
+            houseId: {
+                    value:'houseId',
+                    label: 'houseId',
+                    validate: RED.validators.typedInput("houseIdtype", false)},
+            houseIdtype: {value:"msg"},
             roomId: {
                     value:'roomId',
                     label:'roomId',
@@ -62,15 +62,13 @@
             if (!this.deviceIdtype) {
                 this.deviceIdtype = 'msg';
             }
-            var optionSelectDevice2020 = {value:"selectDevice2020",label:"selectDevice2020(deviceId)",hasValue:false};
-            var optionGetIndependentDevices2020 = {value:"getIndependentDevices2020",label:"getIndependentDevices2020(homeId)",hasValue:false};
-            var optionSelectDeviceByRoom2020 = {value:"selectDeviceByRoom2020",label:"selectDeviceByRoom2020(roomId)",hasValue:false};
-            var optionSelectHomeList = {value:"selectHomeList",label:"selectHomeList()",hasValue:false};
-            var optionSelectRoomByHome2020 = {value:"selectRoomByHome2020",label:"selectRoomByHome2020(homeId)",hasValue:false};
+            var optionGetHouses = {value:"getHouses",label:"getHouses()",hasValue:false};
+            var optionGetDevicesForHouse = {value:"getDevicesForHouse",label:"getDevicesForHouse(houseId)",hasValue:false};
+            var optionGetIndependentDevicesForHouse = {value:"getIndependentDevicesForHouse",label:"getIndependentDevicesForHouse(houseId)",hasValue:false};
             $("#node-input-millQuery").typedInput({
                 default: 'msg',
                 typeField: $("#node-input-millQuerytype"),
-                types:['msg',optionSelectDevice2020,optionGetIndependentDevices2020,optionSelectDeviceByRoom2020,optionSelectHomeList,optionSelectRoomByHome2020]
+                types:['msg',optionGetHouses,optionGetDevicesForHouse,optionGetIndependentDevicesForHouse]
             });
             $("#node-input-homeId").typedInput({
                 default: 'msg',

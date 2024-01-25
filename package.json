@@ -1,7 +1,7 @@
 {
     "name": "node-red-contrib-millheat",
-    "version": "0.0.3",
-    "description": "A Node-Red node to interact with the Mill Open API",
+    "version": "0.0.4",
+    "description": "A Node-Red node to interact with the Mill Open API V2",
     "repository": "git://github.com/bbergshaven/node-red-contrib-millheat.git",
     "directories": {
         "nodes": "./nodes",
@@ -31,7 +31,7 @@
         }
     },
     "dependencies": {
-        "millheat-js": "^0.0.3"
+        "millheat-js": "^0.2.1"
     },
     "devDependencies": {
         "node-red": "^3"

@@ -3,7 +3,7 @@ module.exports = function (RED) {
     RED.nodes.createNode(this, config);
     this.api = RED.nodes.getNode(config.apiRef);
 
-    if (this.api && !this.api.client) {
+    if (!this.api || this.api && !this.api.client) {
       this.status({
         fill: 'red',
         shape: 'ring',
@@ -20,20 +20,14 @@ module.exports = function (RED) {
       }
       try{
         switch (msg.query) {
-          case 'selectDevice2020':
-            msg.payload = await this.api.selectDevice2020(msg.deviceId);
+          case 'getHouses':
+            msg.payload = await this.api.getHouses();
             break;
-          case 'getIndependentDevices2020':
-              msg.payload = await this.api.getIndependentDevices2020(msg.homeId);
+          case 'getDevicesForHouse':
+              msg.payload = await this.api.getDevicesForHouse(msg.houseId);
             break;
-          case 'selectDeviceByRoom2020':
-            msg.payload = await this.api.selectDeviceByRoom2020(msg.roomId);
-            break;
-          case 'selectHomeList':
-            msg.payload = await this.api.selectHomeList();
-            break;
-          case 'selectRoomByHome2020':
-            msg.payload = await this.api.selectRoomByHome2020(msg.homeId);
+          case 'getIndependentDevicesForHouse':
+            msg.payload = await this.api.getIndependentDevicesForHouse(msg.houseId);
             break;
           default:
             let errorMessage = 'Unknown query in msg';
